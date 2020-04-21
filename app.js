@@ -13,11 +13,11 @@ document.addEventListener('keyup', deflateB)
 
 function inflate() {
     var balloonSize = document.getElementById('Balloon').style.fontSize;
-    if (parseInt(balloonSize)>60)
+    if (parseInt(balloonSize)>50)
     {document.getElementById('Balloon').innerHTML = '💥';}
 
-    if (parseInt(balloonSize)>70)
-    {document.getElementById('Balloon').innerHTML = 'Done'}
+    if (parseInt(balloonSize)>60 || parseInt(balloonSize)<=0)
+    {document.getElementById('Balloon').innerHTML = 'Done', removeListeners ();}
 
     else
         {if(balloonSize=='')
@@ -28,20 +28,17 @@ function inflate() {
 
 function deflate() {
     var balloonSize = document.getElementById('Balloon').style.fontSize;
-    if (balloonSize === '')
-        {balloonSize === 30;}
+    if (balloonSize == '')
+        {balloonSize=30;}
     if (balloonSize<=0)
-        {change === 30;}
+        {change=30;}
     else
         {var change = parseInt(balloonSize)-10;}
         document.getElementById('Balloon').style.fontSize = change.toString() + 'px';
 }
 
-function stop () {
-    if (parseInt(balloonSize)>70) {
-        document.getElementById('Balloon').innerHTML = 'Done'
-    }
+function removeListeners () {
+    document.removeEventListener('keyup', inflateB);
+    document.removeEventListener('keyup', deflateB);
 }
-
-document.getElementById('Balloon').removeEventlistener('keyup', stop)
 
